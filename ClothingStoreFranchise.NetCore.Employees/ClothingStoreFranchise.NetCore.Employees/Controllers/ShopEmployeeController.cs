@@ -1,0 +1,37 @@
+﻿using ClothingStoreFranchise.NetCore.Employees.Dto;
+using ClothingStoreFranchise.NetCore.Employees.Facade;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+
+namespace ClothingStoreFranchise.NetCore.Employees.Controllers
+{
+    [Route("shop-employees")]
+    [ApiController]
+    public class ShopEmployeeController : ControllerBase
+    {
+        private readonly IShopEmployeeService _shopEmployeeService;
+
+        public ShopEmployeeController(IShopEmployeeService shopEmployeeService)
+        {
+            _shopEmployeeService = shopEmployeeService;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ShopEmployeeDto>> Create([FromBody] ShopEmployeeDto shopEmployeeDto)
+        {
+            return Ok(await _shopEmployeeService.CreateAsync(shopEmployeeDto));
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<ShopEmployeeDto>> Update([FromBody] ShopEmployeeDto shopEmployeeDto)
+        {
+            return Ok(await _shopEmployeeService.UpdateAsync(shopEmployeeDto));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task Delete(long id)
+        {
+            await _shopEmployeeService.DeleteAsync(id);
+        }
+    }
+}
