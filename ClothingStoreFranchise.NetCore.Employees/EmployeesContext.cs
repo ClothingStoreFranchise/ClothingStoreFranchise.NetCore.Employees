@@ -12,19 +12,27 @@ namespace ClothingStoreFranchise.NetCore.Employees
         }
 
         public DbSet<FranchiseEmployee> Empoyees { get; set; }
-
+        
         public DbSet<Shop> Shops { get; set; }
 
         public DbSet<Warehouse> Warehouses { get; set; }
-        /*
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Building>().ToTable("Buildings");
+            
             modelBuilder.Entity<ShopEmployee>()
                 .HasOne(s => s.Shop)
                 .WithMany(e => e.ShopEmployees)
                 .OnDelete(DeleteBehavior.Restrict);
             base.OnModelCreating(modelBuilder);
-        }*/
+            modelBuilder.Entity<WarehouseEmployee>()
+                .HasOne(s => s.Warehouse)
+                .WithMany(e => e.WarehouseEmployees)
+                .OnDelete(DeleteBehavior.Restrict);
+            base.OnModelCreating(modelBuilder);
+
+        }
     }
 
     public class CatalogContextFactory : IDesignTimeDbContextFactory<EmployeesContext>

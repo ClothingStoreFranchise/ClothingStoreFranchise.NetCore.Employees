@@ -2,34 +2,22 @@
 
 namespace ClothingStoreFranchise.NetCore.Employees.Migrations.EmployeesMigrations
 {
-    public partial class Initial2 : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Shops",
+                name: "Buildings",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false),
                     Address = table.Column<string>(nullable: true),
-                    Phone = table.Column<string>(nullable: true)
+                    Phone = table.Column<string>(nullable: true),
+                    Discriminator = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shops", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Warehouses",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false),
-                    Address = table.Column<string>(nullable: true),
-                    Phone = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Warehouses", x => x.Id);
+                    table.PrimaryKey("PK_Buildings", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -44,7 +32,7 @@ namespace ClothingStoreFranchise.NetCore.Employees.Migrations.EmployeesMigration
                     Email = table.Column<string>(nullable: true),
                     AccountNumber = table.Column<string>(nullable: true),
                     SSecurityNumber = table.Column<string>(nullable: true),
-                    Salary = table.Column<long>(nullable: false),
+                    Salary = table.Column<decimal>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
                     ShopId = table.Column<long>(nullable: true),
                     WarehouseId = table.Column<long>(nullable: true)
@@ -53,17 +41,17 @@ namespace ClothingStoreFranchise.NetCore.Employees.Migrations.EmployeesMigration
                 {
                     table.PrimaryKey("PK_Empoyees", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Empoyees_Shops_ShopId",
+                        name: "FK_Empoyees_Buildings_ShopId",
                         column: x => x.ShopId,
-                        principalTable: "Shops",
+                        principalTable: "Buildings",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Empoyees_Warehouses_WarehouseId",
+                        name: "FK_Empoyees_Buildings_WarehouseId",
                         column: x => x.WarehouseId,
-                        principalTable: "Warehouses",
+                        principalTable: "Buildings",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -83,10 +71,7 @@ namespace ClothingStoreFranchise.NetCore.Employees.Migrations.EmployeesMigration
                 name: "Empoyees");
 
             migrationBuilder.DropTable(
-                name: "Shops");
-
-            migrationBuilder.DropTable(
-                name: "Warehouses");
+                name: "Buildings");
         }
     }
 }

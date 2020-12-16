@@ -26,7 +26,7 @@ namespace ClothingStoreFranchise.NetCore.Employees.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ICollection<ShopDto>>> Get(long id)
+        public async Task<ActionResult<ShopDto>> Get(long id)
         {
             return Ok(await _shopService.LoadAsync(id));
         }

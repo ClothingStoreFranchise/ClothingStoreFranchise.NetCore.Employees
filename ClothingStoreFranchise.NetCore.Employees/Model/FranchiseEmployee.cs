@@ -23,6 +23,6 @@ namespace ClothingStoreFranchise.NetCore.Employees.Model
 
         public string SSecurityNumber { get; set; }
 
-        public long Salary { get; set; }
+        public decimal Salary { get; set; }
     }
 }

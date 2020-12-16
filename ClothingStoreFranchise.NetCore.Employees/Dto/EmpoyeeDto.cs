@@ -20,7 +20,7 @@ namespace ClothingStoreFranchise.NetCore.Employees.Dto
 
         public string SSecurityNumber { get; set; }
 
-        public long Salary { get; set; }
+        public decimal Salary { get; set; }
 
         public long Key()
         {

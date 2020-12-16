@@ -18,13 +18,13 @@ namespace ClothingStoreFranchise.NetCore.Employees.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ICollection<WarehouseDto>>> Get()
+        public async Task<ActionResult<ICollection<WarehouseDto>>> GetAll()
         {
             return Ok(await _warehouseService.LoadAllWithEmployeesCount());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ICollection<ShopDto>>> Get(long id)
+        public async Task<ActionResult<WarehouseDto>> Get(long id)
         {
             return Ok(await _warehouseService.LoadAsync(id));
         }
