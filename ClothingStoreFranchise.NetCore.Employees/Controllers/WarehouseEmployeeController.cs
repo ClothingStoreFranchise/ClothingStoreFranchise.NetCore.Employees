@@ -19,6 +19,12 @@ namespace ClothingStoreFranchise.NetCore.Employees.Controllers
             _warehoseEmployeeService = warehoseEmployeeService;
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<WarehouseEmployeeDto>> Get(long id)
+        {
+            return Ok(await _warehoseEmployeeService.LoadAsync(id));
+        }
+
         [HttpPost]
         public async Task<ActionResult<WarehouseEmployeeDto>> Create([FromBody] WarehouseEmployeeDto warehouseEmployeeDto)
         {
