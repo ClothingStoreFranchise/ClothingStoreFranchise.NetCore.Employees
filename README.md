@@ -3,7 +3,7 @@
 **Description**
 ----------------
 
-Microservice that manages employees of the clothing store franchise. This microservice offers the end points to manage employees.
+Microservice that manages clothing store franchise employees. This microservice offers the end points to manage employees.
 
 **API Design**
 ----------------
