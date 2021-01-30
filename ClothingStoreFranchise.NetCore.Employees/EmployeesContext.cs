@@ -40,8 +40,7 @@ namespace ClothingStoreFranchise.NetCore.Employees
         public EmployeesContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<EmployeesContext>()
-                .UseSqlServer(@"data source=localhost\SQLEXPRESS; initial catalog=Employee;
-                Trusted_Connection=True;MultipleActiveResultSets=true")
+                .UseSqlServer(@"data source=127.0.0.1; initial catalog=Employees; persist security info=True; user id=sqlserver; password=root")
                 .EnableSensitiveDataLogging(true)
                 .UseLoggerFactory(new LoggerFactory());
 
