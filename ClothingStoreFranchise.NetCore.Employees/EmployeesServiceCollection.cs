@@ -90,7 +90,7 @@ namespace ClothingStoreFranchise.NetCore.Employees
         {
             services.AddEntityFrameworkSqlServer().AddDbContext<EmployeesContext>(options =>
             {
-                options.UseSqlServer(@"data source=127.0.0.1; initial catalog=Employees; persist security info=True; user id=sqlserver; password=root",
+                options.UseSqlServer(@configuration["DatabaseConnection:DataSource"],
                                      sqlServerOptionsAction: sqlOptions =>
                                      {
                                          sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
@@ -101,7 +101,7 @@ namespace ClothingStoreFranchise.NetCore.Employees
             /*
             services.AddDbContext<IntegrationEventLogContext>(options =>
             {
-                options.UseSqlServer(@"data source=localhost\SQLEXPRESS; initial catalog=Catalog; Trusted_Connection=True;MultipleActiveResultSets=true",
+                options.UseSqlServer(@configuration["DatabaseConnection:DataSource"],
                                      sqlServerOptionsAction: sqlOptions =>
                                      {
                                          sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);

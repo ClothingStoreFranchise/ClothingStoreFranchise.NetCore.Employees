@@ -25,19 +25,13 @@ namespace ClothingStoreFranchise.NetCore.Employees.Controllers
         [HttpPost]
         public async Task<ActionResult<ShopEmployeeDto>> Create([FromBody] ShopEmployeeDto shopEmployeeDto)
         {
-            return Ok(await _shopEmployeeService.CreateAsync(shopEmployeeDto));
+            return Created("shop-employees", await _shopEmployeeService.CreateAsync(shopEmployeeDto));
         }
 
         [HttpPut]
         public async Task<ActionResult<ShopEmployeeDto>> Update([FromBody] ShopEmployeeDto shopEmployeeDto)
         {
             return Ok(await _shopEmployeeService.UpdateAsync(shopEmployeeDto));
-        }
-
-        [HttpDelete("{id}")]
-        public async Task Delete(long id)
-        {
-            await _shopEmployeeService.DeleteAsync(id);
         }
     }
 }

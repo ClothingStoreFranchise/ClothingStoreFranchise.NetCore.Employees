@@ -5,9 +5,7 @@ using ClothingStoreFranchise.NetCore.Employees.Dto;
 using ClothingStoreFranchise.NetCore.Employees.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace ClothingStoreFranchise.NetCore.Employees.Facade.Impl
 {
@@ -19,7 +17,7 @@ namespace ClothingStoreFranchise.NetCore.Employees.Facade.Impl
 
         protected override Expression<Func<WarehouseEmployee, bool>> EntityAlreadyExistsCondition(WarehouseEmployeeDto dto)
         {
-            throw new NotImplementedException();
+            return e => e.Id == dto.Id;
         }
 
         protected override Expression<Func<WarehouseEmployee, bool>> EntityHasDependenciesToDeleteCondition(ICollection<long> listAppIds)
@@ -29,7 +27,23 @@ namespace ClothingStoreFranchise.NetCore.Employees.Facade.Impl
 
         protected override bool IsValid(WarehouseEmployeeDto dto)
         {
-            throw new NotImplementedException();
+            return NullValidations(dto) && NumericValidations(dto);
+        }
+
+        private static bool NullValidations(WarehouseEmployeeDto dto)
+        {
+            return dto != null
+                && !string.IsNullOrWhiteSpace(dto.Username)
+                && !string.IsNullOrWhiteSpace(dto.LastName)
+                && !string.IsNullOrWhiteSpace(dto.Address)
+                && !string.IsNullOrWhiteSpace(dto.Email)
+                && !string.IsNullOrWhiteSpace(dto.AccountNumber)
+                && !string.IsNullOrWhiteSpace(dto.SSecurityNumber);
+        }
+
+        private static bool NumericValidations(WarehouseEmployeeDto dto)
+        {
+            return dto.Salary > 100;
         }
     }
 }
