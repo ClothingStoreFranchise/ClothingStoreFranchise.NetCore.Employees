@@ -58,6 +58,8 @@ namespace ClothingStoreFranchise.NetCore.Employees
             services.AddTransient<WarehouseUpdatedHandler>();
             services.AddTransient<ShopCreatedHandler>();
             services.AddTransient<ShopUpdatedHandler>();
+            services.AddTransient<WarehouseEmployeeDeletedHandler>();
+            services.AddTransient<ShopEmployeeDeletedHandler>();
 
             return services;
         }

@@ -1,5 +1,7 @@
-﻿using ClothingStoreFranchise.NetCore.Employees.Dto;
+﻿using ClothingStoreFranchise.NetCore.Common.Constants;
+using ClothingStoreFranchise.NetCore.Employees.Dto;
 using ClothingStoreFranchise.NetCore.Employees.Facade;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,6 +10,7 @@ namespace ClothingStoreFranchise.NetCore.Employees.Controllers
 {
     [Route("warehouses")]
     [ApiController]
+    [Authorize(Roles = Role.Admin)]
     public class WarehouseController : ControllerBase
     {
         private readonly IWarehouseService _warehouseService;

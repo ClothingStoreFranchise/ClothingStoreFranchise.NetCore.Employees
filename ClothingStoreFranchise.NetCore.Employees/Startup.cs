@@ -99,6 +99,9 @@ namespace ClothingStoreFranchise.NetCore.Employees
             eventBus.Subscribe<UpdateWarehouseEvent, WarehouseUpdatedHandler>();
             eventBus.Subscribe<CreateShopEvent, ShopCreatedHandler>();
             eventBus.Subscribe<UpdateShopEvent, ShopUpdatedHandler>();
+            //auth microservice events
+            eventBus.Subscribe<DeleteShopEmployeeEvent, ShopEmployeeDeletedHandler>();
+            eventBus.Subscribe<DeleteWarehouseEmployeeEvent, WarehouseEmployeeDeletedHandler>();
         }
 
     }
